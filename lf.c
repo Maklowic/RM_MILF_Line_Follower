@@ -8,7 +8,7 @@ int Ladowanie=0;int Ladowanie2=0;
 int qcontrol = 0;
 int switchr = 0;
 int cunter=0;int cunter2=0;
-//***Odczyt ADC
+
 int ADC_Result;
 float ADC_Result1;
 float Volt;
@@ -17,7 +17,7 @@ uint8_t sensorselect=0;
 uint8_t sensors_tab[9]={0};
 int isBlack(int x);
 int None(){return !(sensors_tab[0] && sensors_tab[1] && sensors_tab[2] && sensors_tab[3] && sensors_tab[4] &&
-		sensors_tab[5] && sensors_tab[6] && sensors_tab[7] &&sensors_tab[8]);}
+		sensors_tab[5] && sensors_tab[6] && sensors_tab[7] && sensors_tab[8]);}
 enum Motor{
 	Front,Back,Stop,REST
 };
@@ -64,7 +64,7 @@ void SenSelect(){
 		}
 		break;
 	case 2:
-		if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_5) == 0){
+		if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_) == 0){
 		if(isBlack(cunter))sensors_tab[2]=1;
 		else sensors_tab[5]=0;
 		deb6=sensors_tab[5];
@@ -73,7 +73,7 @@ void SenSelect(){
 
 		break;
 	case 3:
-			if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_9) == 0){
+			if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_) == 0){
 			if(isBlack(cunter))sensors_tab[3]=1;
 			else sensors_tab[2]=0;
 			deb3=sensors_tab[2];
@@ -113,18 +113,18 @@ case 'l':
 	switch(Dir){
 	case Front:
 		if(Destination == Front)return;
-		else {GPIO_ResetBits(GPIOB,GPIO_Pin_5 | GPIO_Pin_7);
-		GPIO_SetBits(GPIOB,GPIO_Pin_7);
+		else {GPIO_ResetBits(GPIO,GPIO_Pin_ | GPIO_Pin_);
+		GPIO_SetBits(GPIO,GPIO_Pin_);
 		}
 		break;
 	case Back:
 		if(Destination == Back)return;
-		else {GPIO_ResetBits(GPIOB,GPIO_Pin_5 | GPIO_Pin_7);
-		GPIO_SetBits(GPIOB, GPIO_Pin_5);
+		else {GPIO_ResetBits(GPIO,GPIO_Pin_ | GPIO_Pin_);
+		GPIO_SetBits(GPIO, GPIO_Pin_);
 		}
 		break;
 	case Stop:
-		GPIO_ResetBits(GPIOB,GPIO_Pin_5 | GPIO_Pin_7);
+		GPIO_ResetBits(GPIO,GPIO_Pin_ | GPIO_Pin_);
 		break;
 	}
 	break;
@@ -133,18 +133,18 @@ case 'r':
 	switch(Dir){
 	case Front:
 		if(Destination == Front)return;
-		else {GPIO_ResetBits(GPIOB,GPIO_Pin_4 | GPIO_Pin_9);
-		GPIO_SetBits(GPIOB,GPIO_Pin_4);
+		else {GPIO_ResetBits(GPIO,GPIO_Pin_| GPIO_Pin_);
+		GPIO_SetBits(GPIO ,GPIO_Pin_);
 		}
 		break;
 	case Back:
 		if(Destination == Back)return;
-		else {GPIO_ResetBits(GPIOB,GPIO_Pin_4 | GPIO_Pin_9);
-		GPIO_SetBits(GPIOB, GPIO_Pin_9);
+		else {GPIO_ResetBits(GPIO,GPIO_Pin_| GPIO_Pin_);
+		GPIO_SetBits(GPIO , GPIO_Pin_);
 		}
 		break;
 	case Stop:
-		GPIO_ResetBits(GPIOB,GPIO_Pin_4 | GPIO_Pin_9);
+		GPIO_ResetBits(GPIO , GPIO_Pin_| GPIO_Pin_);
 		break;
 	}
 	break;
